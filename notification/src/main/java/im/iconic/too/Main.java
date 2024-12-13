@@ -1,4 +1,4 @@
-package it.iti.monaco;
+package im.iconic.too;
 
 public class Main {
     public static void main(String[] args) {

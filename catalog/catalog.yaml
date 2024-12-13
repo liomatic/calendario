@@ -1,0 +1,219 @@
+openapi: 3.0.3
+info:
+  title: Catalog Management API
+  description: API for managing the catalog, including full CRUD operations.
+  version: 1.0.0
+servers:
+  - url: https://im.iconic.to/v1
+tags:
+  - name: catalog
+    description: Operations to manage the catalog.
+paths:
+  /catalog:
+    get:
+      tags:
+        - catalog
+      summary: List all catalog items
+      description: Retrieve a paginated list of all catalog items.
+      operationId: listCatalogItems
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: size
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: A paginated list of catalog items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CatalogItem'
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  size:
+                    type: integer
+        '500':
+          description: Server error
+
+    post:
+      tags:
+        - catalog
+      summary: Create a new catalog item
+      description: Add a new item to the catalog.
+      operationId: createCatalogItem
+      requestBody:
+        description: Catalog item object that needs to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogItem'
+      responses:
+        '201':
+          description: Item successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogItem'
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+
+  /catalog/{itemId}:
+    get:
+      tags:
+        - catalog
+      summary: Get a catalog item by ID
+      description: Retrieve a specific catalog item by its ID.
+      operationId: getCatalogItemById
+      parameters:
+        - name: itemId
+          in: path
+          description: ID of the catalog item to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogItem'
+        '404':
+          description: Item not found
+        '500':
+          description: Server error
+
+    put:
+      tags:
+        - catalog
+      summary: Update a catalog item
+      description: Update an existing catalog item by ID.
+      operationId: updateCatalogItem
+      parameters:
+        - name: itemId
+          in: path
+          description: ID of the catalog item to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Updated catalog item object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogItem'
+      responses:
+        '200':
+          description: Item successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogItem'
+        '400':
+          description: Invalid input
+        '404':
+          description: Item not found
+        '500':
+          description: Server error
+
+    delete:
+      tags:
+        - catalog
+      summary: Delete a catalog item
+      description: Delete a specific catalog item by its ID.
+      operationId: deleteCatalogItem
+      parameters:
+        - name: itemId
+          in: path
+          description: ID of the catalog item to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Item successfully deleted
+        '404':
+          description: Item not found
+        '500':
+          description: Server error
+  /catalog/upload:
+    post:
+      tags:
+        - catalog
+      summary: Bulk create catalog items from file
+      description: Upload a file containing multiple catalog item descriptions to create them in bulk.
+      operationId: uploadCatalogItems
+      requestBody:
+        description: A file containing catalog item data in CSV or JSON format
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file containing catalog item data
+      responses:
+        '200':
+          description: Items successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  createdItems:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CatalogItem'
+        '400':
+          description: Invalid file format or data
+        '500':
+          description: Server error
+components:
+  schemas:
+    CatalogItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the catalog item
+        name:
+          type: string
+          description: Name of the catalog item
+        description:
+          type: string
+          description: Detailed description of the catalog item
+        price:
+          type: number
+          format: double
+          description: Price of the catalog item
+        available:
+          type: boolean
+          description: Availability status of the catalog item
+      required:
+        - id
+        - name
+        - price
