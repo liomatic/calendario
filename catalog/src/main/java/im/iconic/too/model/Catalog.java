@@ -20,14 +20,19 @@ public class Catalog {
     @Id
     private Long id;
 
+    @Column
     private String name;
 
+    @Column
     private String marca;
 
+    @Column
     private String modello;
 
+    @Column
     private Long unitaDisponibili;
 
+    @Column
     private Long unitaContenute;
 
     @Column(name = "codice", unique = true, nullable = false, length = 50)
