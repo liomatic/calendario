@@ -30,4 +30,5 @@ public interface CatalogRepository
     @Query("SELECT c FROM Catalog c WHERE c.tipologia = :tipologia")
     List<Catalog> findByTipologia(@Param("tipologia") String tipologia);
 
+
 }
