@@ -37,6 +37,9 @@ public class Catalog {
     @Column
     private Long unitaContenute;
 
+    @Column
+    private String tipologia;
+
     @Column(name = "codice", unique = true, nullable = false, length = 50)
     private String codice;
 
