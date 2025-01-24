@@ -1,5 +1,6 @@
 package im.iconic.too.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,6 +19,7 @@ import lombok.Setter;
 public class Catalog {
 
     @Id
+    @JsonIgnore
     private Long id;
 
     @Column
