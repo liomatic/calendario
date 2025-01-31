@@ -18,6 +18,7 @@ public interface CatalogRepository
     @Query("SELECT c FROM Catalog c WHERE c.unitaDisponibili < :soglia")
     List<Catalog> findLowAvailability (@Param("soglia")int soglia);
 
-    @Query("SELECT c FROM Catalog c WHERE c.)
+    @Query("SELECT c FROM Catalog c WHERE c.name=:nome")
+    List<Catalog>
 
 }
