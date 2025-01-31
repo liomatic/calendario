@@ -32,7 +32,13 @@ public class Catalog {
     private String modello;
 
     @Column
+    private String tipo;
+
+    @Column
     private Long unitaDisponibili;
+
+    @Column
+    private Long unitaMassime;
 
     @Column
     private Long unitaContenute;
