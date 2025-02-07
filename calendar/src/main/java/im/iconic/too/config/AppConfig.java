@@ -25,7 +25,6 @@ public class AppConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("Calendar API")
-                        .description("gestione del calendario delle prenotazioni")
                         .version("1.0.0")
                         .license(new License().name("Apache Commons").url("https://commons.apache.org/proper/commons-bsf/license.html")));
     }
