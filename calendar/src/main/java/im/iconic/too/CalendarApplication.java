@@ -20,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableScheduling
 
 public class CalendarApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(CalendarApplication.class, args);
     }

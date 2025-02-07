@@ -16,15 +16,18 @@ public interface CatalogRepository
     List<Catalog> soldOut();
 
     @Query("SELECT c FROM Catalog c WHERE c.unitaDisponibili < :soglia")
-    List<Catalog> findLowAvalaibility(@Param("soglia") int soglia);
-
-    @Query("SELECT c FROM Catalog c WHERE c.name = :nome")
-    List<Catalog> findByName(@Param("nome") String nome);
+    List<Catalog> findLowAvailability(@Param("soglia") int soglia);
 
     @Query("SELECT c FROM Catalog c WHERE c.marca = :marca")
     List<Catalog> findByMarca(@Param("marca") String marca);
 
-    @Query("SELECT c FROM Catalog c WHERE c.modello = :model")
-    List<Catalog> findByModel(@Param("model") String model);
+    @Query("SELECT c FROM Catalog c WHERE c.modello = :modello")
+    List<Catalog> findByModello(@Param("modello") String modello);
+
+    @Query("SELECT c FROM Catalog c WHERE c.name = :name")
+    List<Catalog> findByName(@Param("name") String name);
+
+    @Query("SELECT c FROM Catalog c WHERE c.unitaContenute = :unicontenute")
+    List<Catalog> findByUnitaContenute(@Param("unicontenute") int unicontenute);
 
 }
