@@ -1,7 +1,7 @@
 package im.iconic.too.controller;
 
-import im.iconic.too.dto.ReservationDto;
-import im.iconic.too.dto.ReservationsDto;
+import im.iconic.too.dto.ReservationDTO;
+import im.iconic.too.dto.ReservationsDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,40 +14,50 @@ import java.util.Date;
 @RestController
 @RequestMapping("/calendar")
 
-
 public class CalendarController {
-    //1 Visualizzare le prenotazioni:
-    //Una prenotazione è composta da:
+
+    //quali funzioni deve avere il controller del calendario
+    //visualizzazione del calendario:
+    //elenco dei giorni di un mese con le prenotazioni
+    //una prenotazione è composta da:
     // - Data
-    // - Ora di inizio
-    // - Ora di fine
+    // - Ora inizio
+    // - Ora fine
     // - Nome del dipendente
     // - Nome dell'oggetto prenotato
-    //2 Aggiungere prenotazioni:
+    //aggiungere una prenotazione
+    //inviare un oggetto DTO (data transfer object)
+    //modificare una prenotazione
+    //eliminare una prenotazione
 
-    //3 Modificare prenotazoini
-    //4 Eliminare prenotazioni
 
-    // Visualizzare il calendario
-
+    //1. visualizzare il calendario
     @GetMapping("/show")
-    public ResponseEntity<String> showCalendar(int month, int year){
+    public ResponseEntity<ReservationsDTO> showCalendar(int month, int year) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year,month, 1);
+        calendar.set(year, month, 1);
         Date date = calendar.getTime();
 
-        ReservationDto reservations = new ReservationDto();
-        reservations.setDay(date.toString());
-        ArrayList<ReservationsDto> rsv = new ArrayList<>();
+        ReservationsDTO reservations = new ReservationsDTO();
+        reservations.setDate(date.toString());
+        ArrayList<ReservationDTO> rsv = new ArrayList<>();
         reservations.setReservations(rsv);
-        ReservationDto one = new ReservationDto();
+
+        ReservationDTO one = new ReservationDTO();
         one.setDay("0");
         one.setMonth("0");
         one.setYear("2025");
-        one.setEmployeeName("10:00");
-        one.setEndTime("12:00");
-        one.setEmployeeName("Mario Rossi");
-        one.set
-        return ResponseEntity.ok(date.toString());
+        one.setStartTime("10:00");
+        one.setEndTime("10:30");
+        one.setEmployeeName("mario rossi");
+        one.setObjectName("lab portatile");
+        rsv.add(one);
+
+        return ResponseEntity.ok().body(reservations);
     }
+
+
+
+
+
 }
