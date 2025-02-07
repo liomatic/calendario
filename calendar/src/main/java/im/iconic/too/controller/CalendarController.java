@@ -2,22 +2,31 @@ package im.iconic.too.controller;
 
 import im.iconic.too.dto.ReservationDTO;
 import im.iconic.too.dto.ReservationsDTO;
+import im.iconic.too.model.Reservation;
+import im.iconic.too.repository.ReservationRepository;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+@Setter
+@Getter
 @RestController
 @RequestMapping("/calendar")
 
 public class CalendarController {
 
+    @Autowired
+    private ReservationRepository reservation;
+
     //quali funzioni deve avere il controller del calendario
-    //visualizzazione del calendario:
+    //visualization del calendario:
     //elenco dei giorni di un mese con le prenotazioni
     //una prenotazione è composta da:
     // - Data
@@ -56,8 +65,25 @@ public class CalendarController {
         return ResponseEntity.ok().body(reservations);
     }
 
+    @PostMapping(value= "/add", consumes= "application/json", produces="application/json")
+    public ResponseEntity<Reservation> addReservation(ReservationDTO reservation) {
+        Reservation save = new Reservation();
+        return ResponseEntity.ok().body(save);
+    }
 
+    @DeleteMapping(value="/remove", consumes = "application/json", produces="application/json")
+    public ResponseEntity<Reservation> removeReservation(ReservationDTO reservation) {
+        Reservation save = new Reservation();
 
+        return ResponseEntity.ok().body(save);
+    }
+
+    @PutMapping(value="/update", consumes="application/json", produces="application/json")
+    public ResponseEntity<Reservation> updateReservation(ReservationDTO reservation, String day, String month, String year, String employeeName, String objectName) {
+        Reservation save = new Reservation();
+
+        return ResponseEntity.ok().body(save);
+    }
 
 
 }

@@ -13,7 +13,6 @@ import lombok.Setter;
 
 public class ReservationDTO {
 
-
     private String day;
     private String month;
     private String year;
