@@ -10,8 +10,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import java.util.Calendar;
-
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableTransactionManagement
@@ -20,7 +18,6 @@ import java.util.Calendar;
 @EnableCaching
 @EnableWebMvc
 @EnableScheduling
-
 public class CalendarApplication {
 
     public static void main(String[] args) {

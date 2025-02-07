@@ -18,8 +18,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableCaching
 @EnableWebMvc
 @EnableScheduling
-
-
 public class CatalogApplication {
 
     public static void main(String[] args) {
