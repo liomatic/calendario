@@ -26,6 +26,9 @@ public class Catalog {
     private String name;
 
     @Column
+    private String tipologia;
+
+    @Column
     private String marca;
 
     @Column
