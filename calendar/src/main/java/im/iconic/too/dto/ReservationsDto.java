@@ -11,10 +11,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationsDto {
+
+public class ReservationsDTO {
 
     private String date;
+    private List<ReservationDTO> reservations;
 
-    private List<ReservationsDto> reservations;
 
 }

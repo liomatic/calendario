@@ -9,7 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationDto {
+
+
+public class ReservationDTO {
+
+
     private String day;
     private String month;
     private String year;
@@ -17,4 +21,6 @@ public class ReservationDto {
     private String endTime;
     private String employeeName;
     private String objectName;
+
+
 }
